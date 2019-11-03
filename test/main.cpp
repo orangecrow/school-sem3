@@ -11,6 +11,10 @@ int main(){
     c->print_all();
     b.print_all();
     a.print_all();
+    *c = b;
+    a= b=b;
+    a.print_all();
+    c->print_all();
     delete c;
     return 0;
 }

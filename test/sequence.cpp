@@ -1,12 +1,12 @@
 #include"sequence.h"
 using namespace std;
 Sequence::Sequence(){
-    head.next=(node*)0;
+    head.next=NULL;
 }
 Sequence::~Sequence(){
 /*    node *ptr=head.next;
     node *temp;
-    while(ptr!=(node*)0){
+    while(ptr!=NULL){
         temp=ptr;
         ptr=ptr->next;	
         delete temp;
@@ -23,7 +23,7 @@ int Sequence::add(val_type a){
 int Sequence::copy_all(const Sequence& a){
     node *src=a.head.next;
     node *des=&head;
-    while(src!=(node*)0){
+    while(src!=NULL){
        des->next=new node;
        des=des->next;
        des->value=src->value;
@@ -33,7 +33,7 @@ int Sequence::copy_all(const Sequence& a){
 int Sequence::delete_all(){
     node *ptr=head.next;
     node *temp;
-    while(ptr!=(node*)0){
+    while(ptr!=NULL){
         temp=ptr;
         ptr=ptr->next;	
         delete temp;
@@ -44,13 +44,16 @@ Sequence::Sequence(const Sequence& a){
     //this->delete_all();
     copy_all(a);
 }
-Sequence Sequence::operator=(const Sequence& a){
+Sequence& Sequence::operator=(const Sequence& a){
+    if(this==&a)
+        return *this;
     delete_all();
     copy_all(a);
+    return *this;
 }
 int Sequence::print_all(){
     node *ptr=head.next;
-    while(ptr!=(node*)0){
+    while(ptr!=NULL){
         cout<< ptr->value << "\n";
         ptr=ptr->next;
     }

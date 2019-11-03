@@ -8,14 +8,14 @@ class Sequence{
 private:
     struct node{
         val_type value;
-        node *next=(node*)0;
+        node *next=NULL;
     };
 	node head;
 public:
 	Sequence();
 	Sequence(const Sequence&);
 	~Sequence();
-    Sequence operator=(const Sequence&);
+    Sequence& operator=(const Sequence&);
     int delete_all();
     int copy_all(const Sequence&);
     int add(val_type);
