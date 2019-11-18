@@ -11,13 +11,14 @@ private:
         node *next=NULL;
     };
 	node head;
+    int copy_all(const Sequence&); //use only on empty lists
 public:
 	Sequence();
 	Sequence(const Sequence&);
 	~Sequence();
     Sequence& operator=(const Sequence&);
+    Sequence& operator+(const Sequence&);
     int delete_all();
-    int copy_all(const Sequence&);
     int add(val_type);
     int print_all(); 
 };

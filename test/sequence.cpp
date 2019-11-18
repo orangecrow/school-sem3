@@ -23,11 +23,18 @@ int Sequence::add(val_type a){
 int Sequence::copy_all(const Sequence& a){
     node *src=a.head.next;
     node *des=&head;
+    node *temp;
+    if(a==this){
+        while
+
+    }
     while(src!=NULL){
+       temp=des->next;
        des->next=new node;
        des=des->next;
        des->value=src->value;
        src=src->next;
+       des->next=temp;
     }
 }
 int Sequence::delete_all(){
@@ -50,6 +57,12 @@ Sequence& Sequence::operator=(const Sequence& a){
     delete_all();
     copy_all(a);
     return *this;
+}
+Sequence& Sequence::operator+(const Sequence& a){
+    Sequance *b=new Sequance;
+    b.copy_all(a);
+    b.copy_all(this);
+    return b;
 }
 int Sequence::print_all(){
     node *ptr=head.next;
