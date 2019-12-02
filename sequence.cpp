@@ -50,16 +50,24 @@ Sequence& Sequence::operator=(Sequence& a){
 bool Sequence::pn(node* a){
 	if (a==NULL)
 		return 1;
-	std::cout<<a->next<<std::endl;
+	std::cout<<a->value<<std::endl;
+	return 0;
+}
+int Sequence::recursive_print(node* a){
+	if(a==NULL)
+		return 0;
+	recursive_print(a->next);
+    pn(a);
 	return 0;
 }
 int Sequence::pnal(){
-	int i=0;
-	node* ptr=&head;
-	while(ptr!=NULL){
-		ptr=ptr->next;
-		pn(ptr);
-		++i;
-	}
-	return i;
+recursive_print(head.next);
+//int i=0;
+//node* ptr=&head;
+//while(ptr!=NULL){
+//	ptr=ptr->next;
+//	pn(ptr);
+//	++i;
+//}
+//return i;
 }

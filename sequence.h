@@ -1,4 +1,5 @@
 //template <typename val_type>
+#include<iostream>
 typedef int val_type;
 struct node {
 	val_type value;
@@ -8,8 +9,9 @@ class Sequence{
 private:
 	node head;
 	int recursive_copy(node*);
+    int recursive_print(node*);
 public:
-	Sequence(){};
+	Sequence(){head.next=NULL;};
 	//Sequence(val_type);
 	Sequence(Sequence&);
 	Sequence& operator=(Sequence&);
