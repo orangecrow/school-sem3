@@ -1,6 +1,7 @@
-#include<sequence.h> 
+#include"sequence.h" 
+#include<iostream>
 //template<typename val_type>
-node* sequence::ad(val_type a, node* np){
+node* Sequence::ad(val_type a, node* np){
 	if (np == NULL)
 		return np;
 	node* tmp = np->next;
@@ -9,7 +10,10 @@ node* sequence::ad(val_type a, node* np){
 	np->next->next = tmp;
 	return np;
 }
-node* sequence::del(node* np){
+node* Sequence::ad(val_type a){
+	return ad(a, &head);
+}
+node* Sequence::del(node* np){
 	if (np == NULL)
 		return np;
 	node* del=np->next;
@@ -19,22 +23,43 @@ node* sequence::del(node* np){
 	}
 	return np;
 }
-node* sequence::delal(){
-	while(del(*head)->next!=NULL);
-	return *head;
+node* Sequence::delal(){
+	while(del(&head)->next!=NULL);
+	return &head;
 }
-int sequence::recursive_copy(node* a){
+int Sequence::recursive_copy(node* a){
 	if(a==NULL)
 		return 0;
 	recursive_copy(a->next);
-	ad(a->value,*head);
+	ad(a->value);
 	return 0;
 }
-sequence::sequence(sequence& a){
-		recursive_copy(&(a.head))
+Sequence::~Sequence(){
+	delal();
 }
-sequence sequence::operator=(sequence& a){
+Sequence::Sequence(Sequence& a){
+		recursive_copy(a.head.next);
+}
+Sequence& Sequence::operator=(Sequence& a){
 	if (this==&a)
-		return;
-	
+		return *this;
+	delal();
+	recursive_copy(a.head.next);
+	return *this;
+}
+bool Sequence::pn(node* a){
+	if (a==NULL)
+		return 1;
+	std::cout<<a->next<<std::endl;
+	return 0;
+}
+int Sequence::pnal(){
+	int i=0;
+	node* ptr=&head;
+	while(ptr!=NULL){
+		ptr=ptr->next;
+		pn(ptr);
+		++i;
+	}
+	return i;
 }

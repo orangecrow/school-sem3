@@ -1,22 +1,26 @@
 //template <typename val_type>
 typedef int val_type;
-class sequence{
+struct node {
+	val_type value;
+	node *next;
+};
+class Sequence{
 private:
-	struct node{
-		val_type value;
-		node *next;
-	}
 	node head;
 	int recursive_copy(node*);
 public:
-	sequence(val_type);
-	sequence(sequence&);
-	sequence operator=(sequence&);
-	~sequence();
+	Sequence(){};
+	//Sequence(val_type);
+	Sequence(Sequence&);
+	Sequence& operator=(Sequence&);
+	~Sequence();
 	node* ad(val_type, node*);// adds node after the one that is pointed to by the pointer
+	node* ad(val_type);//adds node after head
 	node* del(node*);// deletes a node after the one that is pointed to by the pointer
 	node* delal();//deletes all elements
-}
+	bool pn(node*);//print the value of the node pointed by pointer
+	int pnal();//print all node values
+};
 	/*struct iterator{
 		node* curr;
 		node* prev;
