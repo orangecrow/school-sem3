@@ -2,7 +2,8 @@
 #define COUNTER
 #include<iostream>
 #include<string>
-typedef std::string key;
+//typedef std::string key;
+template<typename key>
 class Counter{
 private:
 	struct node {
@@ -33,18 +34,20 @@ public:
 // looks for the key and increases the count if it exists or adds a key
 	int specialad(key);
 };
-Counter::node* Counter::ad(key a, Counter::node* np){
+template<typename key>
+typename Counter<key>::node* Counter<key>::ad(key a, typename Counter<key>::node* np){
 	if (np == NULL)
 		return np;
-	Counter::node* tmp = np->next;
-	np->next = new Counter::node;
+	typename Counter<key>::node* tmp = np->next;
+	np->next = new typename Counter<key>::node;
 	np->next->value = a;
 	np->next->next = tmp;
 	np->next->count=1;
 	return np;
 }
-int Counter::specialad(key a){
-	Counter::node* ptr=head.next;
+template<typename key>
+int Counter<key>::specialad(key a){
+	typename Counter<key>::node* ptr=head.next;
 	for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
 		if(ptr->value==a){
 			++ptr->count;
@@ -54,24 +57,28 @@ int Counter::specialad(key a){
 	ad(a);
 	return 1;
 }
-Counter::node* Counter::ad(key a){
+template<typename key>
+typename Counter<key>::node* Counter<key>::ad(key a){
 	return ad(a, &head);
 }
-Counter::node* Counter::del(Counter::node* np){
+template<typename key>
+typename Counter<key>::node* Counter<key>::del(typename Counter<key>::node* np){
 	if (np == NULL)
 		return np;
-	Counter::node* del=np->next;
+	typename Counter<key>::node* del=np->next;
 	if (np->next!=NULL){
 		np->next=np->next->next;
 		delete del;
 	}
 	return np;
 }
-Counter::node* Counter::delal(){
+template<typename key>
+typename Counter<key>::node* Counter<key>::delal(){
 	while(del(&head)->next!=NULL);
 	return &head;
 }
-int Counter::recursive_copy(Counter::node* a){
+template<typename key>
+int Counter<key>::recursive_copy(typename Counter<key>::node* a){
 	if(a==NULL)
 		return 0;
 	recursive_copy(a->next);
@@ -79,44 +86,42 @@ int Counter::recursive_copy(Counter::node* a){
 	specialad(a->value);
 	return 0;
 }
-Counter::~Counter(){
+template<typename key>
+Counter<key>::~Counter(){
 	delal();
 }
-Counter::Counter(Counter & a){
+template<typename key>
+Counter<key>::Counter(Counter<key> & a){
 	head.next=NULL;
 	recursive_copy(a.head.next);
 }
-Counter& Counter::operator=(Counter & a){
+template<typename key>
+Counter<key>& Counter<key>::operator=(Counter<key> & a){
 	if (this==&a)
 		return *this;
 	delal();
 	recursive_copy(a.head.next);
 	return *this;
 }
-bool Counter::pn(Counter::node* a){
+template<typename key>
+bool Counter<key>::pn(typename Counter<key>::node* a){
 	if (a==NULL)
 		return 1;
 	std::cout<<a->value<<":" <<a->count << ", ";
 	return 0;
 }
-int Counter::recursive_print(Counter::node* a){
+template<typename key>
+int Counter<key>::recursive_print(typename Counter<key>::node* a){
 	if(a==NULL)
 		return 0;
 	recursive_print(a->next);
     pn(a);
 	return 0;
 }
-int Counter::pnal(){
+template<typename key>
+int Counter<key>::pnal(){
 recursive_print(head.next);
 std::cout<<std::endl;
 std::cout<<std::endl;
-//int i=0;
-//Counter::node* ptr=&head;
-//while(ptr!=NULL){
-//	ptr=ptr->next;
-//	pn(ptr);
-//	++i;
-//}
-//return i;
 }
 #endif

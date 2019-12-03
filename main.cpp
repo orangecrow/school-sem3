@@ -2,7 +2,7 @@
 #include<string>
 #include"counter.h"
 #include<fstream>
-int count_words(Counter& cnt, std::istream& source){
+int count_words(Counter<std::string>& cnt, std::istream& source){
 	for (std::string word; source >> word; cnt.specialad(word) );
 	return 0;
 }
@@ -12,7 +12,7 @@ int main(){
 	itest();
 }
 int itest() {
-	Counter mycounter;
+	Counter<std::string> mycounter;
 	std::ifstream fs;
 	fs.open("test.txt");
 	if (fs.is_open())
@@ -27,15 +27,15 @@ int itest() {
 
 
 int test(){
-	Counter a;
-	Counter b = a;
+	Counter<std::string> a;
+	Counter<std::string> b = a;
 	a=a;
 	for(int i=0;i<2;++i)
 		a.specialad("asdf");
 	a.pnal();
 	b=a;
 	a.delal();
-	Counter* c= new Counter;
+	Counter<std::string>* c= new Counter<std::string>;
 	c->ad("qewr");
 	c->pnal();
 	b.pnal();
