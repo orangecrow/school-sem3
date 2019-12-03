@@ -1,6 +1,4 @@
 #include"sequence.h"
-#include"sequence.cpp"
-
 int main(){
 	Sequence<int> a;
 	Sequence<int> b = a;
