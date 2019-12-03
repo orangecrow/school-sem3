@@ -1,6 +1,0 @@
-in.cpp sequence.cpp
-/tmp/ccNAXe5C.o: In function `main':
-main.cpp:(.text+0x31): undefined reference to `sequence<int>::add(int)'
-main.cpp:(.text+0x3d): undefined reference to `sequence<int>::~sequence()'
-main.cpp:(.text+0x62): undefined reference to `sequence<int>::~sequence()'
-collect2: error: ld returned 1 exit status
