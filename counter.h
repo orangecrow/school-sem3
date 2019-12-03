@@ -1,7 +1,7 @@
-#include<iostream>
-#include<string>
 #ifndef COUNTER
 #define COUNTER
+#include<iostream>
+#include<string>
 typedef std::string key;
 class Counter{
 private:
@@ -96,7 +96,7 @@ Counter& Counter::operator=(Counter & a){
 bool Counter::pn(Counter::node* a){
 	if (a==NULL)
 		return 1;
-	std::cout<<a->value<<":" <<a->count << " , ";
+	std::cout<<a->value<<":" <<a->count << ", ";
 	return 0;
 }
 int Counter::recursive_print(Counter::node* a){
@@ -108,6 +108,7 @@ int Counter::recursive_print(Counter::node* a){
 }
 int Counter::pnal(){
 recursive_print(head.next);
+std::cout<<std::endl;
 std::cout<<std::endl;
 //int i=0;
 //Counter::node* ptr=&head;
