@@ -1,17 +1,18 @@
-#include"sequence.h"
-#include"sequence.cpp"
+#include<iostream>
+#include<string>
+#include"counter.h"
 
 int main(){
-	Sequence a;
-	Sequence b = a;
+	Counter a;
+	Counter b = a;
 	a=a;
 	for(int i=0;i<12;++i)
-		a.ad(i);
+		a.ad((char)(i+43));
 	a.pnal();
 	b=a;
 	a.delal();
-	Sequence* c= new Sequence;
-	c->ad(100);
+	Counter* c= new Counter;
+	c->ad((char)100);
 	b.pnal();
 	c->pnal();
 	a.pnal();
