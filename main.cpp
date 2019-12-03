@@ -1,9 +1,28 @@
 #include<iostream>
 #include<string>
 #include"counter.h"
+#include<fstream>
+int count_words(Counter& cnt, std::istream& source){
+	for (std::string word; source >> word; cnt.specialad(word) );
+	return 0;
+}
 int test();
+int itest();
 int main(){
-	test();
+	itest();
+}
+int itest() {
+	Counter mycounter;
+	std::ifstream fs;
+	fs.open("test.txt");
+	if (fs.is_open())
+	{
+		std::istream& is = fs;
+		count_words(mycounter,is);
+		fs.close();
+	}
+	mycounter.pnal();
+	return 0;
 }
 
 
