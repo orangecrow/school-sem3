@@ -1,13 +1,18 @@
 #include<iostream>
 #include<string>
 #include"counter.h"
-
+int test();
 int main(){
+	test();
+}
+
+
+int test(){
 	Counter a;
 	Counter b = a;
 	a=a;
 	for(int i=0;i<2;++i)
-		a.ad("asdf");
+		a.specialad("asdf");
 	a.pnal();
 	b=a;
 	a.delal();

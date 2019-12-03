@@ -1,10 +1,13 @@
 #include<iostream>
 #include<string>
+#ifndef COUNTER
+#define COUNTER
 typedef std::string key;
 class Counter{
 private:
 	struct node {
 		key value;
+		int count;
 		node *next;
 	};
 	node head;
@@ -12,16 +15,23 @@ private:
     int recursive_print(node*);
 public:
 	Counter(){head.next=NULL;};
-	//Counter(key);
 	Counter(Counter&);
 	Counter& operator=(Counter&);
 	~Counter();
-	node* ad(key, node*);// adds node after the one that is pointed to by the pointer
-	node* ad(key);//adds node after head
-	node* del(node*);// deletes a node after the one that is pointed to by the pointer
-	node* delal();//deletes all elements
-	bool pn(node*);//print the value of the node pointed by pointer
-	int pnal();//print all node values
+// adds node after the one that is pointed to by the pointer
+	node* ad(key, node*);
+//adds node after head
+	node* ad(key);
+// deletes a node after the one that is pointed to by the pointer
+	node* del(node*);
+//deletes all elements
+	node* delal();
+//print the value of the node pointed by pointer
+	bool pn(node*);
+//print all node values
+	int pnal();
+// looks for the key and increases the count if it exists or adds a key
+	int specialad(key);
 };
 Counter::node* Counter::ad(key a, Counter::node* np){
 	if (np == NULL)
@@ -30,7 +40,19 @@ Counter::node* Counter::ad(key a, Counter::node* np){
 	np->next = new Counter::node;
 	np->next->value = a;
 	np->next->next = tmp;
+	np->next->count=1;
 	return np;
+}
+int Counter::specialad(key a){
+	Counter::node* ptr=head.next;
+	for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+		if(ptr->value==a){
+			++ptr->count;
+			return 0;
+		}
+	}
+	ad(a);
+	return 1;
 }
 Counter::node* Counter::ad(key a){
 	return ad(a, &head);
@@ -53,7 +75,8 @@ int Counter::recursive_copy(Counter::node* a){
 	if(a==NULL)
 		return 0;
 	recursive_copy(a->next);
-	ad(a->value);
+	for(int i=0;i<a->count;++i)
+	specialad(a->value);
 	return 0;
 }
 Counter::~Counter(){
@@ -73,7 +96,7 @@ Counter& Counter::operator=(Counter & a){
 bool Counter::pn(Counter::node* a){
 	if (a==NULL)
 		return 1;
-	std::cout<<a->value<<std::endl;
+	std::cout<<a->value<<":" <<a->count << " , ";
 	return 0;
 }
 int Counter::recursive_print(Counter::node* a){
@@ -85,6 +108,7 @@ int Counter::recursive_print(Counter::node* a){
 }
 int Counter::pnal(){
 recursive_print(head.next);
+std::cout<<std::endl;
 //int i=0;
 //Counter::node* ptr=&head;
 //while(ptr!=NULL){
@@ -94,3 +118,4 @@ recursive_print(head.next);
 //}
 //return i;
 }
+#endif
