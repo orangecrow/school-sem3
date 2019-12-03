@@ -13,8 +13,8 @@ private:
 public:
 	Sequence(){head.next=NULL;};
 	//Sequence(val_type);
-	Sequence(Sequence&);
-	Sequence& operator=(Sequence&);
+	Sequence(const Sequence&);
+	Sequence& operator=(const Sequence&);
 	~Sequence();
 	node* ad(val_type, node*);// adds node after the one that is pointed to by the pointer
 	node* ad(val_type);//adds node after head
@@ -74,12 +74,12 @@ Sequence<val_type>::~Sequence<val_type>(){
 	delal();
 }
 template <typename val_type>
-Sequence<val_type>::Sequence(Sequence<val_type>& a){
+Sequence<val_type>::Sequence(const Sequence<val_type>& a){
 	head.next=NULL;
 	recursive_copy(a.head.next);
 }
 template <typename val_type>
-Sequence<val_type>& Sequence<val_type>::operator=(Sequence<val_type>& a){
+Sequence<val_type>& Sequence<val_type>::operator=(const Sequence<val_type>& a){
 	if (this==&a)
 		return *this;
 	delal();
