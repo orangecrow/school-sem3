@@ -1,12 +1,12 @@
-//template <typename val_type>
 #include<iostream>
-typedef int val_type;
-struct node {
-	val_type value;
-	node *next;
-};
+//typedef int val_type;
+template <typename val_type>
 class Sequence{
 private:
+	struct node {
+		val_type value;
+		node *next;
+	};
 	node head;
 	int recursive_copy(node*);
     int recursive_print(node*);
