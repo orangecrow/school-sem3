@@ -13,6 +13,7 @@ int main(){
 	a.delal();
 	Counter* c= new Counter;
 	c->ad("qewr");
+	c->pnal();
 	b.pnal();
 	c->pnal();
 	a.pnal();
