@@ -6,7 +6,7 @@ int main(){
 	Counter a;
 	Counter b = a;
 	a=a;
-	for(int i=0;i<12;++i)
+	for(int i=0;i<2;++i)
 		a.ad("asdf");
 	a.pnal();
 	b=a;

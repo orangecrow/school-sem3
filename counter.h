@@ -60,7 +60,8 @@ Counter::~Counter(){
 	delal();
 }
 Counter::Counter(Counter & a){
-		recursive_copy(a.head.next);
+	head.next=NULL;
+	recursive_copy(a.head.next);
 }
 Counter& Counter::operator=(Counter & a){
 	if (this==&a)
