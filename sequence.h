@@ -13,8 +13,8 @@ private:
 public:
 	Sequence(){head.next=NULL;};
 	//Sequence(val_type);
-	Sequence(Sequence&);
-	Sequence& operator=(Sequence&);
+	Sequence(const& Sequence);
+	Sequence& operator=(const& Sequence);
 	~Sequence();
 	node* ad(val_type, node*);// adds node after the one that is pointed to by the pointer
 	node* ad(val_type);//adds node after head

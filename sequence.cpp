@@ -37,10 +37,10 @@ int Sequence::recursive_copy(node* a){
 Sequence::~Sequence(){
 	delal();
 }
-Sequence::Sequence(Sequence& a){
+Sequence::Sequence(const& Sequence a){
 		recursive_copy(a.head.next);
 }
-Sequence& Sequence::operator=(Sequence& a){
+Sequence& Sequence::operator=(const& Sequence a){
 	if (this==&a)
 		return *this;
 	delal();
