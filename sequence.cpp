@@ -38,6 +38,7 @@ Sequence::~Sequence(){
 	delal();
 }
 Sequence::Sequence(const& Sequence a){
+	head.next=NULL;
 		recursive_copy(a.head.next);
 }
 Sequence& Sequence::operator=(const& Sequence a){
