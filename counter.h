@@ -16,8 +16,8 @@ private:
     int recursive_print(node*);
 public:
 	Counter(){head.next=NULL;};
-	Counter(Counter&);
-	Counter& operator=(Counter&);
+	Counter(const Counter&);
+	Counter& operator=(const Counter&);
 	~Counter();
 // adds node after the one that is pointed to by the pointer
 	node* ad(key, node*);
@@ -91,12 +91,12 @@ Counter<key>::~Counter(){
 	delal();
 }
 template<typename key>
-Counter<key>::Counter(Counter<key> & a){
+Counter<key>::Counter(const Counter<key> & a){
 	head.next=NULL;
 	recursive_copy(a.head.next);
 }
 template<typename key>
-Counter<key>& Counter<key>::operator=(Counter<key> & a){
+Counter<key>& Counter<key>::operator=(const Counter<key> & a){
 	if (this==&a)
 		return *this;
 	delal();
