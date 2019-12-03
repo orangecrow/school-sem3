@@ -1,27 +1,27 @@
 #include<iostream>
 #include<string>
-typedef string key;
+typedef std::string key;
 class Counter{
 private:
-	struct Counter::node {
+	struct node {
 		key value;
-		Counter::node *next;
+		node *next;
 	};
-	Counter::node head;
-	int recursive_copy(Counter::node*);
-    int recursive_print(Counter::node*);
+	node head;
+	int recursive_copy(node*);
+    int recursive_print(node*);
 public:
 	Counter(){head.next=NULL;};
 	//Counter(key);
-	Counter(const& Counter);
-	Counter& operator=(const& Counter);
+	Counter(Counter&);
+	Counter& operator=(Counter&);
 	~Counter();
-	Counter::node* ad(key, Counter::node*);// adds Counter::node after the one that is pointed to by the pointer
-	Counter::node* ad(key);//adds Counter::node after head
-	Counter::node* del(Counter::node*);// deletes a Counter::node after the one that is pointed to by the pointer
-	Counter::node* delal();//deletes all elements
-	bool pn(Counter::node*);//print the value of the Counter::node pointed by pointer
-	int pnal();//print all Counter::node values
+	node* ad(key, node*);// adds node after the one that is pointed to by the pointer
+	node* ad(key);//adds node after head
+	node* del(node*);// deletes a node after the one that is pointed to by the pointer
+	node* delal();//deletes all elements
+	bool pn(node*);//print the value of the node pointed by pointer
+	int pnal();//print all node values
 };
 Counter::node* Counter::ad(key a, Counter::node* np){
 	if (np == NULL)
@@ -59,10 +59,10 @@ int Counter::recursive_copy(Counter::node* a){
 Counter::~Counter(){
 	delal();
 }
-Counter::Counter(const& Counter a){
+Counter::Counter(Counter & a){
 		recursive_copy(a.head.next);
 }
-Counter& Counter::operator=(const& Counter a){
+Counter& Counter::operator=(Counter & a){
 	if (this==&a)
 		return *this;
 	delal();
