@@ -75,7 +75,8 @@ Sequence<val_type>::~Sequence<val_type>(){
 }
 template <typename val_type>
 Sequence<val_type>::Sequence(Sequence<val_type>& a){
-		recursive_copy(a.head.next);
+	head.next=NULL;
+	recursive_copy(a.head.next);
 }
 template <typename val_type>
 Sequence<val_type>& Sequence<val_type>::operator=(Sequence<val_type>& a){
