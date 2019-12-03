@@ -2,10 +2,7 @@
 #include<string>
 #include"counter.h"
 #include<fstream>
-int count_words(Counter<std::string>& cnt, std::istream& source){
-	for (std::string word; source >> word; cnt.specialad(word) );
-	return 0;
-}
+int count_words(Counter<std::string>&, std::istream&);
 int test();
 int itest();
 int main(){
