@@ -52,9 +52,9 @@ int test(){
 		a.specialad("asdf");
 	a.pnal();
 	b=a;
-	a.delal();
+	a.usr_del();
 	Counter<std::string>* c= new Counter<std::string>;
-	c->ad("qewr");
+	c->specialad("qewr");
 	c->pnal();
 	b.pnal();
 	c->pnal();
