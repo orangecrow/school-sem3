@@ -8,17 +8,12 @@ class Counter{
 private:
 	struct node {
 		key value;
-		int count;
+		unsigned int count;
 		node *next;
 	};
 	node head;
 	int recursive_copy(node*);
     int recursive_print(node*);
-public:
-	Counter(){head.next=NULL;};
-	Counter(const Counter&);
-	Counter& operator=(const Counter&);
-	~Counter();
 // adds node after the one that is pointed to by the pointer
 	node* ad(key, node*);
 //adds node after head
@@ -29,10 +24,31 @@ public:
 	node* delal();
 //print the value of the node pointed by pointer
 	bool pn(node*);
+public:
+	Counter(){head.next=NULL;};
+	Counter(const Counter&);
+	Counter& operator=(const Counter&);
+	~Counter();
 //print all node values
 	int pnal();
 // looks for the key and increases the count if it exists or adds a key
 	int specialad(key);
+	int usr_del(){delal();}
+	int rm_key(key a){
+		node* ptr=head.next;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+			if(ptr->value==a){
+				if(ptr->count=0){
+					del(a);
+					return 0;
+				}
+				--ptr->count;
+				return 1;
+			}
+		}
+		return 2;
+	}
+	int rm_key_al(key a){while(!rm_key(a));}
 };
 template<typename key>
 typename Counter<key>::node* Counter<key>::ad(key a, typename Counter<key>::node* np){
