@@ -1,0 +1,56 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+LIBRARY UNISIM;
+USE UNISIM.Vcomponents.ALL;
+ENTITY lab2_cnt_lab2_cnt_sch_tb IS
+END lab2_cnt_lab2_cnt_sch_tb;
+ARCHITECTURE behavioral OF lab2_cnt_lab2_cnt_sch_tb IS
+
+	COMPONENENT lab2_cnt
+	PORT (q1 : OUT STD_LOGIC;
+			mode : IN STD_LOGIC;
+			clk  : IN STD_LOGIC;
+			q0   : OUT STD_LOGIC;
+			clr  : IN STD_LOGIC;
+			zero : OUT STD_LOGIC);
+	END COMPONENT;
+
+	SIGNAL q1	 : STD_LOGIC;
+	SIGNAL mode	 : STD_LOGIC;
+	SIGNAL clk	 : STD_LOGIC;
+	SIGNAL q0	 : STD_LOGIC;
+	SIGNAL clr	 : STD_LOGIC;
+	SIGNAL zero	 : STD_LOGIC;
+
+BEGIN
+
+	UUT: lab2_cnt PORT MAP(
+		q1	 => q1,
+		mode => mode,
+		clk	 => clk,
+		q0	 => q0,
+		clr	 => clr,
+		zero => zero
+	);
+
+	clk <= not clk after 10 ns;
+
+	tb : PROCESS
+	BEGIN
+		mode <= '0';
+		clr <= '0';
+		wait for 200 ns;
+		mode <= '1';
+		wait for 200 ns;
+		clr <= '1';
+		wait for 100 ns;
+		mode <= '0';
+		wait for 100 ns;
+		clr <= '0';
+		wait for 100 ns;
+		clr <= '1';
+
+		WAIT;
+	END PROCESS;
+END;
