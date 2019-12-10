@@ -35,16 +35,18 @@ public:
 	int specialad(key);
 	int usr_del(){delal();}
 	int rm_key(key a){
-		node* ptr=head.next;
+		node* ptr;
+		node* prev=head;
 		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
 			if(ptr->value==a){
 				if(ptr->count=0){
-					del(a);
+					del(prev);
 					return 0;
 				}
 				--ptr->count;
 				return 1;
 			}
+			prev=ptr;
 		}
 		return 2;
 	}
