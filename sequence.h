@@ -10,18 +10,37 @@ private:
 	node head;
 	int recursive_copy(node*);
     int recursive_print(node*);
+	node* ad(val_type, node*);// adds node after the one that is pointed to by the pointer
+	node* ad(val_type);//adds node after head
+	node* del(node*);// deletes a node after the one that is pointed to by the pointer
+	node* delal();//deletes all elements
+	bool pn(node*);//print the value of the node pointed by pointer
 public:
 	Sequence(){head.next=NULL;};
 	//Sequence(val_type);
 	Sequence(const Sequence&);
 	Sequence& operator=(const Sequence&);
 	~Sequence();
-	node* ad(val_type, node*);// adds node after the one that is pointed to by the pointer
-	node* ad(val_type);//adds node after head
-	node* del(node*);// deletes a node after the one that is pointed to by the pointer
-	node* delal();//deletes all elements
-	bool pn(node*);//print the value of the node pointed by pointer
 	int pnal();//print all node values
+    int usr_ad(val_type a){ad(a);};
+	int usr_del(){delal();}
+	int rm_val(val_type a){
+		node* ptr;
+		node* prev=head;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+			if(ptr->value==a){
+				if(ptr->count=0){
+					del(prev);
+					return 0;
+				}
+				--ptr->count;
+				return 1;
+			}
+			prev=ptr;
+		}
+		return 2;
+	}
+	int rm_val_al(val_type a){while(!rm_key(a));}
 };
 	/*struct iterator{
 		node* curr;

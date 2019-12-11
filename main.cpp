@@ -46,12 +46,12 @@ int stest(){
 	Sequence<std::string> b = a;
 	a=a;
 	for(int i=0;i<2;++i)
-		a.ad("asdf");
+		a.usr_ad("asdf");
 	a.pnal();
 	b=a;
 	a.usr_del();
 	Sequence<std::string>* c= new Sequence<std::string>;
-	c->ad("qewr");
+	c->usr_ad("qewr");
 	c->pnal();
 	b.pnal();
 	c->pnal();
@@ -63,12 +63,12 @@ int stest2(){
 	Sequence<int> b = a;
 	a=a;
 	for(int i=0;i<12;++i)
-		a.ad(i);
+		a.usr_ad(i);
 	a.pnal();
 	b=a;
-	a.delal();
+	a.usr_del();
 	Sequence<int>* c= new Sequence<int>;
-	c->ad(100);
+	c->usr_ad(100);
 	b.pnal();
 	c->pnal();
 	a.pnal();
