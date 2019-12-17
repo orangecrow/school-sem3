@@ -29,16 +29,12 @@ public:
 		node* prev=head;
 		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
 			if(ptr->value==a){
-				if(ptr->count=0){
-					del(prev);
-					return 0;
-				}
-				--ptr->count;
-				return 1;
+				del(prev);
+				return 0;
 			}
 			prev=ptr;
 		}
-		return 2;
+		return 1;
 	}
 	int rm_val_al(val_type a){while(!rm_key(a));}
 };

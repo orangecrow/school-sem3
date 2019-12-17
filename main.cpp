@@ -7,12 +7,14 @@ int count_words(Counter<std::string>&, std::istream&);
 int test();
 int itest();
 int stest();    
+int stest2();    
 int main(){
+stest2();
 }
 int itest() {
 	Counter<std::string> mycounter;
 	std::ifstream fs;
-	fs.open("test.txt");
+	fs.open("Documentation.txt");
 	if (fs.is_open())
 	{
 		std::istream& is = fs;
@@ -29,12 +31,12 @@ int ctest(){
 	Counter<std::string> b = a;
 	a=a;
 	for(int i=0;i<2;++i)
-		a.specialad("asdf");
+		a.usr_ad("asdf");
 	a.pnal();
 	b=a;
 	a.usr_del();
 	Counter<std::string>* c= new Counter<std::string>;
-	c->specialad("qewr");
+	c->usr_ad("qewr");
 	c->pnal();
 	b.pnal();
 	c->pnal();

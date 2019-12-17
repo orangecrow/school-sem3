@@ -32,7 +32,7 @@ public:
 //print all node values
 	int pnal();
 // looks for the key and increases the count if it exists or adds a key
-	int specialad(key);
+	int usr_ad(key);
 	int usr_del(){delal();}
 	int rm_key(key a){
 		node* ptr;
@@ -50,7 +50,19 @@ public:
 		}
 		return 2;
 	}
-	int rm_key_al(key a){while(!rm_key(a));}
+	int rm_key_al(key a){
+		node* ptr;
+		node* prev=head;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+			if(ptr->value==a){
+					del(prev);
+					return 0;
+			}
+			prev=ptr;
+		}
+		return 1;
+	}
+		
 };
 template<typename key>
 typename Counter<key>::node* Counter<key>::ad(key a, typename Counter<key>::node* np){
@@ -64,7 +76,7 @@ typename Counter<key>::node* Counter<key>::ad(key a, typename Counter<key>::node
 	return np;
 }
 template<typename key>
-int Counter<key>::specialad(key a){
+int Counter<key>::usr_ad(key a){
 	typename Counter<key>::node* ptr=head.next;
 	for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
 		if(ptr->value==a){
@@ -101,7 +113,7 @@ int Counter<key>::recursive_copy(typename Counter<key>::node* a){
 		return 0;
 	recursive_copy(a->next);
 	for(int i=0;i<a->count;++i)
-	specialad(a->value);
+	usr_ad(a->value);
 	return 0;
 }
 template<typename key>
