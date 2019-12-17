@@ -3,31 +3,28 @@ Sequence is supposed to be a class template of a single linked list
 the following are the public methods:
 
     Sequence()
-  standard constructor
+  constructor
   
 	Sequence(const Sequence&)
-  standard copyconstructor
+  copyconstructor
   
 	Sequence& operator=(const Sequence&)
-  standard assigmnent operator
+  assigmnent operator
   
 	~Sequence()
-  standard destructor
+  destructor
   
-	node* ad(val_type, node*)
-   adds node after the one that is pointed to by the pointer
-  
-	node* ad(val_type)
+	int usr_ad(val_type)
   adds node after head
 
-	node* del(node*)
-   deletes a node after the one that is pointed to by the pointer
+	int rm_val(val_type)
+   removes the first node with the given val_type
 
-	node* delal()
+	int rm_val_al(val_type)
+   removes all the nodes with the given val_type
+
+	int  usr_del()
   deletes all elements
-
-	bool pn(node*)
-  print the value of the node pointed by pointer
 
 	int pnal()print all node values
   print all node values
@@ -37,51 +34,45 @@ to check for errors. adds some static and dynamic values and prints them.
 
 
 		Counter
-Counter is supposed to be a class template that stores the the keys and the number
+Counter is supposed to be a class template of a linked list that stores the the keys and the number
 of appearences of given keys. 
 
 The method that is used for adding elements in this class
-is specialad(). copy constructor and operatror= use this method.
+is usr_ad(). copy constructor and operatror= use this method.
 
 	Counter()
-  standard constructor
+   constructor
 
 	Counter(const Counter&)
-  standard copyconstructor
+   copyconstructor
 
 	Counter& operator=(const Counter&)
-  standard assigmnent operator
+   assigmnent operator
 
 	~Counter()
-  standard destructor
-
-	node* ad(key, node*)
-   adds node after the one that is pointed to by the pointer
-
-	node* ad(key)
-  adds node after head
-
-	node* del(node*)
-   deletes a node after the one that is pointed to by the pointer
-
-	node* delal()
-  deletes all elements
-
-	bool pn(node*)
-  print the value of the node pointed by pointer
+   destructor
 
 	int pnal()
-  print all node values and the count
+  print all node values and the count. 
 
-	int specialad(key)
+	int usr_ad(key)
    looks for the key and increases the count if it exists or adds a key
+
+	int usr_del()
+	deletes all elements
+
+	int rm_key(key)
+	decreases the counter of the given key and removes the entry if its count is equal to 0.
+
+	int rm_key_al(key a)
+	removes the node with the key entirely.
 
 	function int count_words(Counter<std::string>& cnt, std::istream& source)
 	is supposed to take the istream and count the words inside the stream. 
-	the execution is rather trivalr with one for loop.
+	the implementation is rather trivial with one for loop.
 
-	The testing is made with a test.txt file which is some random manualy typed letter strings
-	the file is opened in main and passed to a function
+	The testing is made with a txt file which can contain any set of words.
+	the file is opened in main and passed to a function.
 	
 	in order to use the function countwords.cpp should be compiled into .o file and then added to
 	main compilation.
