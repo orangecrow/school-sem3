@@ -62,6 +62,10 @@ public:
 		}
 		return 1;
 	}
+    int usr_cat(Counter &a){
+        recursive_copy(a.head.next);
+        return 0;
+    }
 		
 };
 template<typename key>

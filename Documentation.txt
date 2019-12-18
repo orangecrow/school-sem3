@@ -1,3 +1,6 @@
+                Documentation of first lab task
+                         Adam Mruk 
+
 		Sequence
 Sequence is supposed to be a class template of a single linked list
 the following are the public methods:
@@ -18,7 +21,7 @@ the following are the public methods:
   adds node of the provided val_type after head
 
 	int rm_val(val_type)
-   removes the first node with the given val_type
+   removes the first node with the given val_type, returns 0 on sucsess and 1 on failiure
 
 	int rm_val_al(val_type)
    removes all the nodes with the given val_type
@@ -32,16 +35,13 @@ the following are the public methods:
     int usr_cat(Sequence &a)
   copies and adds the data from the provided object
 
-the testing in main is pretty basic. it creates variables, assigns empty lists to itself 
-to check for errors. adds some static and dynamic values and prints them.
-
+the testing in main is made of two functions: one testing on strings and one on intigers.
+it creates variables, assigns empty lists to itself to check for errors,
+adds some static and dynamic values ,prints them and checks the usr_cat method;
 
 		Counter
 Counter is supposed to be a class template of a linked list that stores the the keys and the number
 of appearences of given keys. 
-
-The method that is used for adding elements in this class
-is usr_ad(). copy constructor and operatror= use this method.
 
 	Counter()
    constructor
@@ -60,22 +60,27 @@ is usr_ad(). copy constructor and operatror= use this method.
 
 	int usr_ad(key)
    looks for the key and increases the count if it exists or adds a key
+   returns 1 if the key was added and 0 if counter was increased.
 
 	int usr_del()
-	deletes all elements
+  deletes all elements
 
 	int rm_key(key)
-	decreases the counter of the given key and removes the entry if its count is equal to 0.
+  decreases the counter of the given key and removes the entry if its count is equal to 0.
+  If returns 0 when the element is deleted 1 when counter is decreased and 2 when key is not found.
 
 	int rm_key_al(key a)
-	removes the node with the key entirely.
+  removes the node with the key entirely. returns 0 on success and 1 on failiure.
+
+    int usr_cat(Sequence &a)
+  copies and adds the data from the provided object
 
 	function int count_words(Counter<std::string>& cnt, std::istream& source)
 	is supposed to take the istream and count the words inside the stream. 
 	the implementation is rather trivial with one for loop.
 
-	The testing is made with a txt file which can contain any set of words.
-	the file is opened in main and passed to a function.
+	The testing is similar to the one of sequence with the addition of the count_words method test
+    made with a txt file which can contain any set of words.
 	
-	in order to use the function countwords.cpp should be compiled into .o file and then added to
-	main compilation.
+	in order to use the function countwords.cpp it should be first compiled into .o file and 
+    then added to main compilation.

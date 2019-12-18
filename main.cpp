@@ -7,9 +7,10 @@ int count_words(Counter<std::string>&, std::istream&);
 int test();
 int itest();
 int stest();    
-int stest2();    
+int stest2();
+int ctest();
 int main(){
-stest2();
+ctest();
 }
 int itest() {
 	Counter<std::string> mycounter;
@@ -41,6 +42,15 @@ int ctest(){
 	b.pnal();
 	c->pnal();
 	a.pnal();
+    std::cout<<'\n';
+    std::cout<<'\n';
+	for(int i=0;i<5;++i)
+		a.usr_ad("bhyf");
+    b.usr_del();
+	for(int i=100;i<105;++i)
+		b.usr_ad("nkopytj");
+    b.usr_cat(a);
+    b.pnal();
 	delete c;
 }
 int stest(){
@@ -58,6 +68,15 @@ int stest(){
 	b.pnal();
 	c->pnal();
 	a.pnal();
+    std::cout<<'\n';
+    std::cout<<'\n';
+	for(int i=0;i<5;++i)
+		a.usr_ad("bhyf");
+    b.usr_del();
+	for(int i=100;i<105;++i)
+		b.usr_ad("nkopytj");
+    b.usr_cat(a);
+    b.pnal();
 	delete c;
 }
 int stest2(){
