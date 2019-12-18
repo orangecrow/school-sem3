@@ -35,9 +35,10 @@ the following are the public methods:
     int usr_cat(Sequence &a)
   copies and adds the data from the provided object
 
-the testing in main is made of two functions: one testing on strings and one on intigers.
-it creates variables, assigns empty lists to itself to check for errors,
-adds some static and dynamic values ,prints them and checks the usr_cat method;
+        Testing
+	the testing in main is made of two functions: one testing on strings and one on intigers.
+	it creates variables, assigns empty lists to itself to check for errors,
+	adds some static and dynamic values ,prints them and checks the usr_cat method;
 
 		Counter
 Counter is supposed to be a class template of a linked list that stores the the keys and the number
@@ -56,25 +57,26 @@ of appearences of given keys.
    destructor
 
 	int pnal()
-  print all node values and the count. 
+   print all node values and the count. 
 
 	int usr_ad(key)
    looks for the key and increases the count if it exists or adds a key
    returns 1 if the key was added and 0 if counter was increased.
 
 	int usr_del()
-  deletes all elements
+   deletes all elements
 
 	int rm_key(key)
-  decreases the counter of the given key and removes the entry if its count is equal to 0.
-  If returns 0 when the element is deleted 1 when counter is decreased and 2 when key is not found.
+   decreases the counter of the given key and removes the entry if its count is equal to 0.
+   If returns 0 when the element is deleted 1 when counter is decreased and 2 when key is not found.
 
 	int rm_key_al(key a)
-  removes the node with the key entirely. returns 0 on success and 1 on failiure.
+   removes the node with the key entirely. returns 0 on success and 1 on failiure.
 
     int usr_cat(Sequence &a)
-  copies and adds the data from the provided object
+   copies and adds the data from the provided object
 
+        Testing
 	function int count_words(Counter<std::string>& cnt, std::istream& source)
 	is supposed to take the istream and count the words inside the stream. 
 	the implementation is rather trivial with one for loop.
