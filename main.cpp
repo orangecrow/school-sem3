@@ -74,4 +74,13 @@ int stest2(){
 	b.pnal();
 	c->pnal();
 	a.pnal();
+    std::cout<<'\n';
+    std::cout<<'\n';
+	for(int i=0;i<5;++i)
+		a.usr_ad(i);
+    b.usr_del();
+	for(int i=100;i<105;++i)
+		b.usr_ad(i);
+    b.usr_cat(a);
+    b.pnal();
 }

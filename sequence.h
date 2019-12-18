@@ -37,6 +37,10 @@ public:
 		return 1;
 	}
 	int rm_val_al(val_type a){while(!rm_key(a));}
+    int usr_cat(Sequence &a){
+        recursive_copy(a.head.next);
+        return 0;
+    }
 };
 	/*struct iterator{
 		node* curr;

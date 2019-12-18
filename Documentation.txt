@@ -15,7 +15,7 @@ the following are the public methods:
   destructor
   
 	int usr_ad(val_type)
-  adds node after head
+  adds node of the provided val_type after head
 
 	int rm_val(val_type)
    removes the first node with the given val_type
@@ -28,6 +28,9 @@ the following are the public methods:
 
 	int pnal()print all node values
   print all node values
+
+    int usr_cat(Sequence &a)
+  copies and adds the data from the provided object
 
 the testing in main is pretty basic. it creates variables, assigns empty lists to itself 
 to check for errors. adds some static and dynamic values and prints them.
