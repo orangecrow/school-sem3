@@ -3,9 +3,9 @@
 #include<string>
 #ifndef BIRING
 #define BIRING
-//template<typename Key ,typename Info>
-typedef int Key;
-typedef std::string Info;
+template<typename Key ,typename Info>
+//typedef int Key;
+//typedef std::string Info;
 class BiRing{
 	struct Node{
 		Key k;
@@ -85,12 +85,15 @@ class BiRing{
 			return 0;
 		}
 		bool operator==(Iterator &a){return ptr==a.ptr;}
-		bool operator!=(Iterator &a){return ptr!=a.ptr;}
+		bool operator==(const Iterator &a){return ptr==a.ptr;}
+  		bool operator!=(Iterator &a){return ptr!=a.ptr;}
+		bool operator!=(const Iterator &a){return ptr!=a.ptr;}
 		bool isnull(){return ptr==NULL;}
 		Iterator& operator++(){if(ptr!=NULL)ptr=ptr->next;return *this;}
 		Iterator& operator--(){if(ptr!=NULL)ptr=ptr->prev;return *this;}
 		Iterator operator++(int){Iterator a=*this; ++*this;return a;}
 		Iterator operator--(int){Iterator a=*this; --*this;return a;}
+		//Iterator& ref(){return *this;}
 		private:
 		Package pkg;
 		Node* ptr;
