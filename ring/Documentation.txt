@@ -1,0 +1,65 @@
+				lab task 2
+			Adam Mruk
+The task was to make a general purpose ring template class utilizing iterators of form BIRING<typename key, typenmae info>.
+Additionaly a function must be provided, that will take two rings and mix them according to 3 numbers provided (nbfirst, nbsecond, reps) taking nbfirst consecutive numbers from the first ring, nbsecond consecutive numbers from the second and repeating the proocedure reps times.
+
+Here is the interface of the template class BiRing:
+
+	BiRing()
+	~BiRing()
+	BiRing(const BiRing&)
+	BiRing(const BiRing&&)
+	BiRing& operator=(BiRing&)
+
+	Iterator begin()
+	returns Iterator pointing to an element in the ring or NULL if ring is empty
+
+	std::vector<Iterator> search(key) 
+	returns array of Iterators that point to nodes of given key
+
+	void add(key,info)
+	adds a node with key and info to the ring (after the first element)
+	
+	void rm_all()
+	removes all nodes
+
+	void print_all()
+	prints all the nodes
+
+
+Here is the interface of the type Iterator in the BiRing namespace:
+
+	Package* operator->()
+	package operator*()
+	the value of returned package in case of the iterator pointing to NULL is undefined
+	package is a simple structure containing:
+		Key k
+		Info i
+
+	bool isnull()
+	returns true if iterator pionts to NULL and false otherwise
+
+	bool operator==()
+	bool operator!=()
+	Iterator& operator++()
+	Iterator& operator--()
+	Iterator operator++(int)
+	Iterator operator--(int)
+
+	bool print()
+	prints key and info of Iterator
+
+	bool add(key,info)
+	adds a node with key and info after a node pointed to by iterator
+
+	bool rm()
+	removes node pointed to by Iterator 
+
+	int modKey(key)
+	int modInfo(info)
+	modifies info or key (respectively) of a node pointed to by Iterator
+	
+In addition to that, functions with the return type of int or bool, return 0 or false on success and some other integer value or true on failure (for example if iterator is pointing to null).
+
+The testing is done by using each method at least once for each case of a ring: with 0, 1, or more than one elements
+
