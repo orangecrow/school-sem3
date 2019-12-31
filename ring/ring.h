@@ -6,7 +6,7 @@
 template<typename Key ,typename Info>
 //typedef int Key;
 //typedef std::string Info;
-class BiRing{
+class BiRing{ 
 	struct Node{
 		Key k;
 		Info i;
@@ -17,6 +17,7 @@ class BiRing{
 		Key k;
 		Info i;
 	};
+	public:
 	struct Iterator{
 		Iterator(){ptr=NULL;ring=NULL;}
 		Iterator(const Iterator& a){ring=a.ring;ptr=a.ptr;}
@@ -86,7 +87,7 @@ class BiRing{
 		}
 		bool operator==(Iterator &a){return ptr==a.ptr;}
 		bool operator==(const Iterator &a){return ptr==a.ptr;}
-  		bool operator!=(Iterator &a){return ptr!=a.ptr;}
+		bool operator!=(Iterator &a){return ptr!=a.ptr;}
 		bool operator!=(const Iterator &a){return ptr!=a.ptr;}
 		bool isnull(){return ptr==NULL;}
 		Iterator& operator++(){if(ptr!=NULL)ptr=ptr->next;return *this;}
@@ -100,6 +101,7 @@ class BiRing{
 		BiRing* ring;
 		friend class BiRing;
 	};
+	private:
 
 	int copyall(Iterator a){
 		Node* b=a.ptr;
@@ -144,6 +146,12 @@ class BiRing{
 		Iterator a;
 		a.ptr=anchor;
 		a.ring=this;
+		return a;
+	}
+	Iterator begin()const{
+		Iterator a;
+		a.ptr=anchor;
+		a.ring=(BiRing*)this;
 		return a;
 	}
 

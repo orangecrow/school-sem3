@@ -1,6 +1,6 @@
 				lab task 2
 			Adam Mruk
-The task was to make a general purpose ring template class utilizing iterators of form BIRING<typename key, typenmae info>.
+The task was to make a general purpose ring template class utilizing iterators of form BiRing<typename key, typenmae info>.
 Additionaly a function must be provided, that will take two rings and mix them according to 3 numbers provided (nbfirst, nbsecond, reps) taking nbfirst consecutive numbers from the first ring, nbsecond consecutive numbers from the second and repeating the proocedure reps times.
 
 Here is the interface of the template class BiRing:
@@ -61,5 +61,5 @@ Here is the interface of the type Iterator in the BiRing namespace:
 	
 In addition to that, functions with the return type of int or bool, return 0 or false on success and some other integer value or true on failure (for example if iterator is pointing to null).
 
-The testing is done by using each method at least once for each case of a ring: with 0, 1, or more than one elements
+The testing is done by using each method at least once for each case of a ring: with 0, 1, or more than one elements. Then two rings are created for the purppose of testing the shuffle function and returned ring is printed. 
 
