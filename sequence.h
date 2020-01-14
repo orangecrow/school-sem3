@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 //typedef int val_type;
 template <typename val_type>
 class Sequence{
@@ -21,22 +22,69 @@ public:
 	Sequence(const Sequence&);
 	Sequence& operator=(const Sequence&);
 	~Sequence();
-	int pnal();//print all node values
+	void pnal();//print all node values
     int usr_ad(val_type a){ad(a);};
-	int usr_del(){delal();}
-	int rm_val(val_type a){
+    int usr_ad(val_type a,unsigned int b){
+		node* c = &head;
+		for(int i=0;i<b;++i)
+			if (c!=NULL) c=c->next;
+		if(ad(a,c))return 0;
+		return 1;
+	};
+	void print(){
 		node* ptr;
-		node* prev=head;
-		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
-			if(ptr->value==a){
-				del(prev);
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next)
+			pn(ptr);
+		std::cout<<'\n';
+	}
+	int usr_end_ad(val_type a){
+		node* ptr;
+		for(ptr=&head;ptr!=NULL;ptr=ptr->next){
+			if(ptr->next==NULL){
+				ad(a,ptr);
 				return 0;
 			}
-			prev=ptr;
 		}
 		return 1;
 	}
-	int rm_val_al(val_type a){while(!rm_key(a));}
+	int usr_del(){delal();}
+	int rm_index(unsigned int a){
+		node* c = &head;
+		for(int i=0;i<a;++i){
+			if (c==NULL)return 1;
+			c=c->next;
+		}
+		del(c);
+		return 0;
+	}
+
+	std::vector<int> search(val_type a){
+		node* ptr;
+		node* prev=&head;
+		std::vector<int> array;
+		int c=0;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+			if(ptr->value==a)
+				array.push_back(c);
+			++c;
+		}
+		return array;
+	}
+	
+	int rm_val(val_type a){
+		bool suc=true;
+		node* ptr;
+		node* prev=&head;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+			if(ptr->value==a){
+				ptr=prev;
+				del(prev);
+				suc=false;
+			}
+			prev=ptr;
+		}
+		return suc;
+	}
     int usr_cat(Sequence &a){
         recursive_copy(a.head.next);
         return 0;
@@ -109,7 +157,7 @@ template <typename val_type>
 bool Sequence<val_type>::pn(typename Sequence<val_type>::node* a){
 	if (a==NULL)
 		return 1;
-	std::cout<<a->value<<std::endl;
+	std::cout<<a->value<<" | ";
 	return 0;
 }
 template <typename val_type>
@@ -121,14 +169,7 @@ int Sequence<val_type>::recursive_print(typename Sequence<val_type>::node* a){
 	return 0;
 }
 template <typename val_type>
-int Sequence<val_type>::pnal(){
+void Sequence<val_type>::pnal(){
 recursive_print(head.next);
-//int i=0;
-//typename Sequence<val_type>::node* ptr=&head;
-//while(ptr!=NULL){
-//	ptr=ptr->next;
-//	pn(ptr);
-//	++i;
-//}
-//return i;
+std::cout << "\n";
 }

@@ -62,11 +62,92 @@ public:
 		}
 		return 1;
 	}
-    int usr_cat(Counter &a){
+    void usr_cat(Counter &a){
         recursive_copy(a.head.next);
-        return 0;
     }
-		
+	//-------------------------------------------
+	void ad_at_index(key k, int index){
+		if(!get_index(k)){
+			usr_ad(k);
+			mov_key(k,index);
+		}else
+			usr_ad(k);
+	}
+	//-------------------------------------------
+private:
+int innerfunc1(node* p2, int num,key k){
+	node *p1;
+	node *ptr;
+	int a=num;
+	if(p2==NULL||p2->next==NULL||p2->next->next==NULL)
+		return 0;
+	p1=p2->next;
+	ptr=p1->next;
+	if(ptr->value!=k)
+		a=innerfunc1(p2->next,num,k);
+	if(a<0){
+		p1=p2->next;
+		ptr=p1->next;
+		p2->next=ptr;
+		p1->next=ptr->next;
+		ptr->next=p1;
+		++a;
+	}
+	return a;
+}
+int innerfunc2(key k, int dir){ 
+	node* p1 = &head;
+	node* temp;
+	node* ptr;
+	int a = 0;
+	for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+		if(ptr->value==k){
+			for(int i=0;i<dir;++i){
+				if(ptr->next!=NULL){
+					p1->next=ptr->next;
+					temp=ptr->next->next;
+					ptr->next->next=ptr;
+					ptr->next=temp;
+					p1=p1->next;
+					a=i+1;
+				}
+			}
+		}
+		p1=ptr;
+	}
+	return a;
+}
+	
+public:
+	int mov_key(key k, int dir){
+		if(dir<0)
+			return dir-innerfunc1(&head,dir,k);
+		if(dir>0)
+			return innerfunc2(k,dir);
+		return 0;
+	}
+	unsigned int get_index(key k){
+		node* ptr;
+		int index=0;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next){
+			++index;
+			if(ptr->value==k)
+				return index;
+		}
+		return 0;
+	}
+	void print_all(){
+		node* ptr;
+		for(ptr=head.next;ptr!=NULL;ptr=ptr->next)
+			std::cout << ptr->value << ':' << ptr->count << " | ";
+		std::cout << std::endl;
+	}
+	void print(key k){
+		for(node* ptr=head.next;ptr!=NULL;ptr=ptr->next)
+			if(ptr->value==k)
+				std::cout << ptr->value << ':' << ptr->count << "\n";
+	}
+
 };
 template<typename key>
 typename Counter<key>::node* Counter<key>::ad(key a, typename Counter<key>::node* np){
@@ -117,7 +198,7 @@ int Counter<key>::recursive_copy(typename Counter<key>::node* a){
 		return 0;
 	recursive_copy(a->next);
 	for(int i=0;i<a->count;++i)
-	usr_ad(a->value);
+		usr_ad(a->value);
 	return 0;
 }
 template<typename key>

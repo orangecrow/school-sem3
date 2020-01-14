@@ -1,88 +1,104 @@
-                Documentation of first lab task
-                         Adam Mruk 
+					DOCUMENTATION OF FIRST LAB TASK
+							ADAM MRUK 
 
 		Sequence
 Sequence is supposed to be a class template of a single linked list
 the following are the public methods:
 
-    Sequence()
-  constructor
-  
+	Sequence()
 	Sequence(const Sequence&)
-  copyconstructor
-  
 	Sequence& operator=(const Sequence&)
-  assigmnent operator
-  
 	~Sequence()
-  destructor
-  
-	int usr_ad(val_type)
-  adds node of the provided val_type after head
 
-	int rm_val(val_type)
-   removes the first node with the given val_type, returns 0 on sucsess and 1 on failiure
+@	int usr_ad(val_type)
+Adds node of the provided value to the beginning of the list.
 
-	int rm_val_al(val_type)
-   removes all the nodes with the given val_type
+@	int usr_end_ad(val_type)
+Adds node of the provided value to the end of the list.
 
-	int  usr_del()
-  deletes all elements
+@	int usr_ad(val_type,unsigned int)
+Adds node of the provided value at the postition with specified index (indexing starts form 0).
 
-	int pnal()print all node values
-  print all node values
+@	int rm_index(unsigned int)
+Removes the the nth node after head.
 
-    int usr_cat(Sequence &a)
-  copies and adds the data from the provided object
+@	std::vector<int> search(val_type)
+Returns vecotr to an int array that holds (index)positions, of the elements with given values, on the list.
 
-        Testing
-	the testing in main is made of two functions: one testing on strings and one on intigers.
-	it creates variables, assigns empty lists to itself to check for errors,
-	adds some static and dynamic values ,prints them and checks the usr_cat method;
+@	int rm_val(val_type)
+Removes all the nodes with the given val_type.
 
-		Counter
-Counter is supposed to be a class template of a linked list that stores the the keys and the number
-of appearences of given keys. 
+@	int usr_del()
+Deletes all elements.
+
+@	void pnal()
+Print all node values backwards.
+
+@	void print()
+Print all node values.
+
+@	int usr_cat(Sequence)
+Copies and adds the data from the provided object.
+
+In addition to that, functions with the return type of int return 0 or false on success and some other integer value or true on failure.
+
+			Counter
+Counter is supposed to be a class template of a linked list that stores the the keys and the number of appearences of given key. The following are the public methods: 
 
 	Counter()
-   constructor
-
 	Counter(const Counter&)
-   copyconstructor
-
 	Counter& operator=(const Counter&)
-   assigmnent operator
-
 	~Counter()
-   destructor
 
-	int pnal()
-   print all node values and the count. 
+@	int pnal()
+Print all node values and the count.
 
-	int usr_ad(key)
-   looks for the key and increases the count if it exists or adds a key
-   returns 1 if the key was added and 0 if counter was increased.
+@	int usr_ad(key)
+Looks for the key and increases the count if it exists or adds a key returns 1 if the key was added and 0 if counter was increased.
 
-	int usr_del()
-   deletes all elements
+@	int usr_ad(key, int)
+Looks for the key and increases the count if it exists or adds a key in the index given by second argument. returns 1 if the key was added and 0 if counter was increased.
 
-	int rm_key(key)
-   decreases the counter of the given key and removes the entry if its count is equal to 0.
-   If returns 0 when the element is deleted 1 when counter is decreased and 2 when key is not found.
+@	int usr_del()
+Deletes all elements.
 
-	int rm_key_al(key a)
-   removes the node with the key entirely. returns 0 on success and 1 on failiure.
+@	int rm_key(key)
+Decreases the counter of the given key and removes the entry if its count is equal to 0. If returns 0 when the element is deleted 1 when counter is decreased and 2 when key is not found.
 
-    int usr_cat(Sequence &a)
-   copies and adds the data from the provided object
+@	int rm_key_al(key)
+Removes the node with the key entirely. returns 0 on success and 1 on failiure.
 
-        Testing
-	function int count_words(Counter<std::string>& cnt, std::istream& source)
-	is supposed to take the istream and count the words inside the stream. 
-	the implementation is rather trivial with one for loop.
+@	void usr_cat(Sequence)
+Copies and adds the data from the provided object.
 
-	The testing is similar to the one of sequence with the addition of the count_words method test
-    made with a txt file which can contain any set of words.
-	
-	in order to use the function countwords.cpp it should be first compiled into .o file and 
-    then added to main compilation.
+@	int mov_key(key,int)
+Moves the entry, with the given key, according to the given number, further from the beggining if it's positive and closer if it's negative. Returns the number of places it was able to move the key (in case the entry reached the end or the beggining of the list returned number can be different than the specified value and will be 0 on failure to find the key).
+
+@	void print(key)
+Prints the key value and the number that corelates to it. Nothing is printed if key is not found.
+
+@	unsigned int get_index(key)
+Returns the position (indexing starts form 1) of the entry with the given key in the list or 0 if it does not exist.
+
+	count_words function
+Function int count_words(Counter<std::string>&, std::istream&) is supposed to take the istream and count the words inside the stream. The implementation is rather trivial with one for loop.
+
+			Testing
+	The testing is composed of various functions that, together, test all the components of the the project.
+
+	ctest2()
+Checks the working of countwords function with test.txt file and the following methods: print print_all, usr_ad, mov_key, get_index methods in counter with <string>.
+
+	ctest()
+Checks usr_ad, pnal, usr_del, usr_cat methods and all the operators in counter with <string>.
+
+	stest()
+Same as ctest but testing class sequence.
+
+	stest2()
+Same as stest but using <int> type instead of string.
+
+	stest3()
+Tests rm_index, usr_end_ad, usr_ad(with two arguments), search, rm_val methods in sequence.
+
+	In order to use the function countwords.cpp it should be first compiled into .o file and then added to main compilation.

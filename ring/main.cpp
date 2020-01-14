@@ -22,7 +22,7 @@ void test(BiRing<int,std::string> &ring){
 	std::cout<< "\n" << "search 6:" ;
 	auto tab = ring.search(6);
 	if(!tab.empty()){
-		std::cout << (*tab[0]).k << "|" << tab[0]->i <<" or " << tab[0].print() << "\n";
+		std::cout << (*tab[0]).k << "|" << tab[0]->i <<" or " ;tab[0].print();
 		std::cout<<"is tab[0] equal to --ring.begin()?:" << (tab[0] == --ring.begin())<<"\n";
 		std::cout<<"is tab[0] not equal to ring.begin()?:" << (tab[0] != ring.begin())<<"\n";
 	}else
