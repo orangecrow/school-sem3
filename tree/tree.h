@@ -18,6 +18,9 @@ class Tree{
 				++count;
 			return count;
 		}
+        int balance(){
+            return br-bl;
+           }
 		int pos(){
 			if(u==NULL)
 				return 0;
@@ -52,7 +55,7 @@ class Tree{
 		}
 		return (r > l ? r : l)+1;
 	}
-	int recfix(Node*& p, Key k){
+	int recbal(Node*& p, Key k){
 		int& r=p->br;
 		int& l=p->bl;
 		if(p==NULL){
@@ -61,29 +64,33 @@ class Tree{
 		if(k==p->k)
 			return (p->br > p->bl ? p->br : p->bl )+1;
 		if(k>p->k){
-			r=recfix(p->r,k);
+			r=recbal(p->r,k);
 		}
 		if(k<p->k){
-			l=recfix(p->l,k);
+			l=recbal(p->l,k);
 		}
 		return (r > l ? r : l)+1;
 	}
 
-	void fixup(Node* p){
+	void balup(Node* p){
 		if(p->r==NULL)
 			p->br=0;
 		else 
-			recfix(root,p->r->k);
+			recad(root,p->r->k);
 		if(p->l==NULL)
 			p->bl=0;
 		else 
-			recfix(root,p->l->k);
-		recfix(root,p->k);
+			recad(root,p->l->k);
+		recad(root,p->k);
 	}
 //----------------------
 	int smartrotate(Node*& p, bool d){
 		Node* t=p;
 		if(d&&p->l!=NULL){ //rigt rotation d=1
+            if(p->l->balance()>0){
+                rotate(p->l,0);
+                p=p->u;
+            }
 			p=p->l;
 			p->u=t->u;
 			t->u=p;
@@ -93,6 +100,10 @@ class Tree{
 			p->r=t;
 		}
 		if(!d&&p->r!=NULL){ // left rotation d=0
+            if(p->r->balance()<0){
+                rotate(p->r,1);
+                p=p->u;
+            }
 			p=p->r;
 			p->u=t->u;
 			t->u=p;
@@ -101,10 +112,30 @@ class Tree{
 				p->l->u=t;
 			p->l=t;
 		}
-		fixup(t);
+		balup(t);
 	}
-//----------------------
 	
+    void fix(Key k){
+        recfix(root,k);
+    }
+    int recfix(Node* p, Key k){
+		if(p==NULL){
+			return 1;
+		}
+		if(k==p->k)
+		if(k>p->k){
+			recfix(p->r,k);
+		}
+		if(k<p->k){
+			recfix(p->l,k);
+		}
+        if(p->balance()>1)
+            smartrotate(p,0);
+        if(p->balance()<-1)
+            smartrotate(p,1);
+		return 0;
+    }
+//----------------------
 	int rotate(Node*& p, bool d){
 		Node* t=p;
 		if(d&&p->l!=NULL){ //rigt rotation d=1
@@ -125,7 +156,7 @@ class Tree{
 				p->l->u=t;
 			p->l=t;
 		}
-		fixup(t);
+		balup(t);
 	}
 
 	void pn(Node* ptr){
@@ -135,7 +166,7 @@ class Tree{
 			std::cout << "\t";
 		//std::cout << ptr->k << "\n";
 		//std::cout << ptr->k << ":" << ptr->bl << ":" << ptr->br << "\n";
-		std::cout << ptr->k << ":" << ptr->br-ptr->bl << "\n";
+		std::cout << ptr->k << ":" << ptr->balance() << "\n";
 	}
 
 	void recprint(Node* ptr){
@@ -165,6 +196,8 @@ class Tree{
 	}
 
 	int add(Key k, Info i){
-		return recad(root,k,i);
+		int ret = recad(root,k,i);
+        //fix(k);
+        return ret;
 	}
 };

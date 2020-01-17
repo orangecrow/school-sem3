@@ -13,23 +13,19 @@ void test1(){ // add print and rotate test
 	a.add(123,"sf");
 	a.add(23,"sf");
 	a.add(51,"sf");
+	a.print();
+	std::cout << "\n-------------------------\n";
 	a.add(19,"sf");
 	a.print();
 	std::cout << "\n-------------------------\n";
-	a.testfunc();
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.testfunc2();
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.testfunc2();
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.add(13,"sf");
-	a.add(17,"sf");
-	a.add(33,"sf");
-	a.add(63,"sf");
-	a.print();
+//	a.testfunc();
+//	a.print();
+//	std::cout << "\n-------------------------\n";
+//	a.add(13,"sf");
+//	a.add(17,"sf");
+//	a.add(33,"sf");
+//	a.add(63,"sf");
+//	a.print();
 	return;
 }
 
