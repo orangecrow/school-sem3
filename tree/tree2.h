@@ -1,10 +1,10 @@
 #include<string>
 #include<iostream>
 #define DIRECTION k > p->k
-typedef int Key;
-typedef std::string Info;
-class Tree{
-	public:
+//typedef int Key;
+//typedef std::string Info;
+template <typename Key , typename Info>
+class AVLTree{
 
 	struct Node{
 		Node* up[2]={NULL,NULL};
@@ -35,7 +35,7 @@ class Tree{
 		if(k==p->k)
 			return p->weightPlus();
 		p->bal[k > p->k] = recCountBalance(p->up[k > p->k],k);
-		return p->weight();
+		return p->weightPlus();
 	}
 
 	Node*& recAdd(Node*& p, Key k){
@@ -99,6 +99,7 @@ class Tree{
 	void fixBal(Key k){
 		recFixBal(root,k);
 	}
+
 //-----------------------------------------------------
 	Node*& recFindF(Node*& p, Key k){
 		static Node* toret =NULL;
@@ -152,8 +153,10 @@ class Tree{
 				}
 			previous=getPrev(replacement);
 			for(int j=0;j<2;++j){
-				if (previous->up[j]==replacement)
+				if (previous->up[j]==replacement){
 					previous->up[j]=NULL;
+					//previous->bal[j]=0;
+				}
 				replacement->up[j]=p->up[j];
 				replacement->bal[j]=p->bal[j];
 			}
@@ -173,7 +176,6 @@ class Tree{
 			return removeNode(p);
 		return recRemove(p->up[k > p->k],k);
 	}
-//-----------------------------------------------------
 
 	int getLvl(Key k){
 		int i = 0;
@@ -185,33 +187,105 @@ class Tree{
 		return 0;
 	}
 
-	void pn(Node* p){
-		for(int i=0; i < getLvl(p->k);++i)
-			std::cout << "\t";
-		//std::cout << p->k << ":" << p->up[0] << ":" << p->up[1] << "\n";
+	void printNode(Node* p){
 		std::cout << p->k << ":" << p->balance() << "\n";
 	}
 
-	void recPrint(Node* p ){
+	void printNode(Node* p,bool indent, int mode ){
+		if (indent)
+			for(int i=0; i < getLvl(p->k);++i)
+				std::cout << "\t";
+		switch (mode){
+			case 0:
+				std::cout << p->k << "\n";
+				break;
+			case 1:
+				std::cout << p->k << ":" << p->balance() << "\n";
+				break;
+			case 2:
+				std::cout << p->k << ":" << p->bal[0] << ":" << p->bal[1] << "\n";
+				break;
+			case 3:
+				std::cout << p->k << ":" << p->i << "\n";
+				break;
+		}
+	}
+
+	void recPrint(Node* p, bool dir , bool indent, int mode){
 		if ( p == NULL)
 			return;
-		recPrint( p->up[0]);
-		pn( p );
-		recPrint( p->up[1]);
+		recPrint( p->up[!dir],dir,indent, mode);
+			printNode(p,indent,mode);
+		recPrint( p->up[dir],dir,indent, mode);
 		return;
 	}
 
+//-----------------------------------------------------
+	void recCopy(Node* p ){
+		if ( p == NULL)
+			return;
+		recCopy( p->up[0]);
+		add(p->k,p->i);
+		recCopy( p->up[1]);
+		return;
+	}
+
+	void rmAll(){ while(!removeNode(root)); }
+
 	public:
+
+	AVLTree(){};
+
+	AVLTree(const AVLTree& a){
+		rmAll();
+		recCopy(a.root);
+	}
+	
+	AVLTree(const AVLTree&& a){
+		root=a.root;
+	}
+	
+	AVLTree& operator=(const AVLTree& a){
+		if(this=&a)
+			return *this;
+		rmAll();
+		recCopy(a.root);
+	}
+
+	~AVLTree(){ rmAll(); }
+
+	int modInfo(Key k,Info i){
+		Node* p = recFind(root,k);
+		if(p==NULL)
+			return 1;
+		p->i=i;
+		return 0;
+	}
+
+	Info getInfo(Key k){
+		Info zero;
+		Node* p = recFind(root,k);
+		if(p==NULL)
+			return zero;
+		return p->i;
+	}
+//-----------------------------------------------------
+	
 	int remove(Key k){
 		return recRemove(root,k);
 	}
 
-	int rot(Key k, bool d){
-		recRotate(root,k,d);
+	void print(bool ascend,bool indent, int mode){
+		recPrint(root,ascend,indent,mode);
 	}
 
-	void print(){
-		recPrint(root);
+	int add(Key k){
+		Node * t = recAdd(root,k);
+		if (t==NULL)
+			return 1;
+		recCountBalance(root,k);
+		fixBal(k);
+		return 0;
 	}
 
 	int add(Key k, Info i){

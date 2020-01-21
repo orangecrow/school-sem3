@@ -1,55 +1,58 @@
 #include"tree2.h"
-void test1();
+#include<cstdlib>
+#include<time.h>
+#include<iostream>
+#include<fstream>
+AVLTree<int, std::string> test2(bool,int,int);
 int main(){
-	test1();
+	test2(0,123,50);
 	return 0;
 }
-void test1(){ // add print and rotate test
-	Tree a;
-	a.add(39,"root");
-	a.add(4,"h");
-	a.add(2,"sf");
-	a.add(3,"sf");
-	a.add(123,"sf");
-	a.add(23,"sf");
-	a.add(51,"sf");
-	a.add(19,"sf");
-	a.add(13,"sf");
-	a.add(17,"sf");
-	a.add(33,"sf");
-	a.add(63,"sf");
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.remove(19);
-	a.remove(17);
-	a.remove(13);
-	a.remove(4);
-	a.print();
-	std::cout << "\n-------------------------\n";
-	/*a.testfunc2();
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.add(5,"sf");
-	a.add(32,"sf");
-	a.add(22,"sf");
-	a.add(222,"sf");
-	a.add(21,"sf");
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.testfunc3(32);
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.testfunc3(23);
-	a.print();
-	std::cout << "\n-------------------------\n";
-	a.usr_remove(19);
-	a.usr_remove(21);
-	a.usr_remove(22);
-	a.usr_remove(33);
-	a.usr_remove(39);
-	a.print();
-	std::cout << "\n-------------------------\n";
-	*/
-	return;
+
+int count_words(AVLTree<std::string, int>& cnt, std::istream& source){
+	for (std::string word; source >> word; ){
+		if(cnt.add(word,1))
+			cnt.modInfo(word,cnt.getInfo(word)+1);
+	}
 }
 
+AVLTree<int, std::string> test2(bool bonus, int seed, int nc){
+	AVLTree<int,std::string> a;
+	srand(seed);
+	int tab[nc];
+	int t;
+	for ( int i=0 ; i<nc ; ++i){
+		t=rand()%(nc*10);
+		a.add(t, "wafd");
+		tab[i]=t;
+		if(bonus){
+			a.print(1,1,1);
+			std::cout << "\n------------"<< tab[i] <<"-------------\n";
+		}
+	}
+	if(bonus)
+		std::cout << "removing" << "\n";
+	for ( int i=0 ; i<nc ; ++i){
+		t=rand()%nc;
+		a.print(1,1,1);
+		if(bonus){
+			std::cout << "\n------------"<< tab[t] <<"-------------\n";
+			a.remove(tab[t]);
+		}
+	}
+	a.print(1,1,1);
+	return a;
+}
+
+void test1(){
+	AVLTree<std::string, int > mycounter;
+	std::ifstream fs;
+	fs.open("Bible.txt");
+	if (fs.is_open())
+	{
+		std::istream& is = fs;
+		count_words(mycounter,is);
+		fs.close();
+	}
+	mycounter.print(1,0,3);
+}
