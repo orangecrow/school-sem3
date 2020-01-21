@@ -1,4 +1,4 @@
-#include"tree.h"
+#include"tree2.h"
 void test1();
 int main(){
 	test1();
@@ -20,7 +20,13 @@ void test1(){ // add print and rotate test
 	a.add(63,"sf");
 	a.print();
 	std::cout << "\n-------------------------\n";
-	a.testfunc2();
+	a.remove(19);
+	a.remove(17);
+	a.remove(13);
+	a.remove(4);
+	a.print();
+	std::cout << "\n-------------------------\n";
+	/*a.testfunc2();
 	a.print();
 	std::cout << "\n-------------------------\n";
 	a.add(5,"sf");
@@ -36,14 +42,14 @@ void test1(){ // add print and rotate test
 	a.testfunc3(23);
 	a.print();
 	std::cout << "\n-------------------------\n";
-	a.testfunc3(19);
-	a.testfunc3(21);
-	a.testfunc3(22);
-	a.testfunc3(33);
-	a.testfunc3(39);
-	a.print();
+	a.usr_remove(19);
+	a.usr_remove(21);
+	a.usr_remove(22);
+	a.usr_remove(33);
+	a.usr_remove(39);
 	a.print();
 	std::cout << "\n-------------------------\n";
+	*/
 	return;
 }
 
