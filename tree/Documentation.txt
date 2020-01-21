@@ -1,0 +1,60 @@
+					DOCUMENTATION OF THIRD LAB TASK
+							ADAM MRUK 
+		AVLTree
+AVLTree is supposed to be a a general purpose class template of an avl-tree data structure.
+It is supposed to allow for fast data access for big data sets. The performance of the template class should be compared to std::map. 
+
+	AVLTree()
+	AVLTree(const AVLTree&)
+	AVLTree& operator=(const AVLTree&)
+	~AVLTree()
+
+	void print(bool ascend,bool indent,int mode)
+	prints the tree in ascending order if the ascend is true and descending if it's false.
+	Similarly the indent option allows for printing the tree structure.
+	additionally there are 4 printing modes:
+	0 just keys
+	1 keys and balances of nodes
+	2 keys and the maximum level of the node on the left and on the right side of the key
+	3 keys and info
+
+	int remove(Key)
+	removes the given key from the tree.
+
+	int count()
+	returns the number of elements stored in a tree.
+
+	int check(Key)
+	checks if the given key exists, returns 1 if it does and 0 if it desn't.
+
+	Info getInfo(Key)
+	returns info of given key, it is undefined if the key does not exist.
+
+	int modInfo(Key,Info)
+	modifies the info of given key to the desired one retruns 1 if the key doesn't exist.
+
+	int add(Key , Info )
+	int add(Key)
+	Adds the Key (optionaly with given Info) to the tree.
+
+Testing
+Testing of the most critical aspects of tree structure is done through with randTest function that
+adds a number of random key values to a tree and then removes a number of random key values 
+(picked from those that were added) resulting in a non empty tree. it then prints the resulting tree.
+it takes 3 arguments. 
+The first is a bool switch that allows the function to print every state of a tree after each addition and removal.
+The second is the seed used for random number generation for keys. 
+The third argument is the amount of additions we want to perform. 
+Examining the output allowed to easily find mistakes.
+
+The second part of the testing is done by checking the time of execution of various methods 
+using a big data set.
+First a function adds words from the text of the Bible to both tree and map instance.
+the info part is used to store the number of accurences of a given word. the time of those operations is mesured.
+then methods for searching ,checking for existance, removing and adding keys for map and tree
+repectively are used with a number of different keys and the times of executions are mesured 
+and displayed.
+From the tests it seems that while map is noticibely faster when removing and adding keys avltree is faster when looking for the key.
+The lookup times were even better after a modification done to the searching function.
+perhaps some of the negative performance difference of the avltree could be also lowered with more efforts spent on optimazation.
+In conclusion avltree seems to be a superior choice when key lookup is at premium and the database modifications are of less importance.

@@ -25,6 +25,7 @@ class AVLTree{
 		Key k;
 		Info i;
 	};
+	Info zero;
 
 	Node * mynullptr=NULL;
 	Node * root=NULL;
@@ -187,9 +188,9 @@ class AVLTree{
 		return 0;
 	}
 
-	void printNode(Node* p){
-		std::cout << p->k << ":" << p->balance() << "\n";
-	}
+//	void printNode(Node* p){
+//		std::cout << p->k << ":" << p->balance() << "\n";
+//	}
 
 	void printNode(Node* p,bool indent, int mode ){
 		if (indent)
@@ -262,13 +263,47 @@ class AVLTree{
 		return 0;
 	}
 
-	Info getInfo(Key k){
-		Info zero;
+	Info getInfoOld(Key k){
 		Node* p = recFind(root,k);
 		if(p==NULL)
 			return zero;
 		return p->i;
 	}
+	Info getInfo(Key k){
+		Node* p=root;
+		while(p!=NULL&&p->k!=k)
+			p=p->up[k>p->k];
+		if(p->k==k)
+			return p->i;
+	}
+
+
+private:
+	void recCount(Node* p, int& count){
+		if ( p == NULL)
+			return;
+		recCount( p->up[0],count);
+		++count;
+		recCount( p->up[1],count);
+		return;
+	}
+public:
+
+	int count(){
+		int count=0;
+		recCount(root,count);
+		return count;
+	}
+
+	int check(Key k){
+		Node* p=root;
+		while(p!=NULL&&p->k!=k)
+			p=p->up[k>p->k];
+		if(p==NULL)
+			return 0;
+		return 1;
+	}
+
 //-----------------------------------------------------
 	
 	int remove(Key k){
